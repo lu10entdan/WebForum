@@ -1,0 +1,17 @@
+﻿@model WebForum.Models.Topic
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title>">Display topic: @Model.Name</h3>
+    </div>
+    <div id="album-details">
+        <p>
+            <em>Topic:</em>
+            @Model.Name
+        </p>
+        @Html.ActionLink("Pull up details about " + @Model.Name , "Details",
+       new { id = Model.Id},
+       new {@class = "btn btn-primary"})
+    </div>
+</div>

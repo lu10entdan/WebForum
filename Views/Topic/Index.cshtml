@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebForum.Models.Topic>
+
+@{
+    ViewBag.Title = "Welcome to topics";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Post Create", "Create", "Post", new { TopicId = item.Id }, null) |
+                @Html.ActionLink("Post List", "Index", "Post", new { TopicId = item.Id }, null)
+                <button type="button">Button</button>
+            </td>
+        </tr>
+    }
+    @*
+        Working on some JQuery to get data to move back and forth from pages easier.
+    *@
+</table>
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <div id="displayTopic">
+        <script>
+                @Ajax.ActionLink("How about a random Topic?",
+                    "Display",
+                    null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "displayTopic",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET"
+                    },
+                    new {@class = "btn btn-primary"})
+        </script>
+
+    </div>
+
+    <div>
+                @*
+        http://stackoverflow.com/questions/14049817/in-asp-net-mvc-all-possible-ways-to-call-controller-action-method-from-a-razor
+                *@
+    </div>
+    <script>
+        function getTopic(id) {
+            $.ajax({
+                url: '@Url.Action("GetTopicJs")',
+                type: 'GET',
+                dataType: 'text',
+                cache: false,
+                data: { id: id },
+                success: function(name) {
+                    $('#Name').val(name);
+                }
+            });
+        }
+
+        var obj = getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f');
+        alert(getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f'));
+    </script>
+}
