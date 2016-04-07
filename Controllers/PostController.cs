@@ -4,34 +4,34 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
-using System.Web;                              
-using System.Web.Mvc;                           
+using System.Web;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;                                          
+using Microsoft.AspNet.Identity.Owin;
 using WebForum.Context;
-using WebForum.Models;                                                        
+using WebForum.Models;
 
 namespace WebForum.Controllers
 {
-    [Authorize]                              
-    public class PostController : Controller                     
+    [Authorize]
+    public class PostController : Controller
     {
         readonly TopicContext tdb = new TopicContext();
         readonly PostContext db = new PostContext();
-                                                                
+
         // GET: Post
         [HttpGet]
-        [AllowAnonymous]            
+        [AllowAnonymous]
         public ActionResult Index(Guid? TopicId)
         {
 
-            try                                                                    
+            try
             {
                 if (Request.IsAuthenticated)
                 {
                     // Kept losing the TopicId when browsing through Post Pages
-                    if (Session["TopicId"] != null)               
-                        TopicId = (Guid)Session["TopicId"];   
+                    if (Session["TopicId"] != null)
+                        TopicId = (Guid)Session["TopicId"];
 
                     if (TopicId != null)
                     {
@@ -40,7 +40,7 @@ namespace WebForum.Controllers
                             + tdb.Topics.Find(TopicId).Name;
                         var post = db.Posts.Where(p => p.TopicId == TopicId);
                         TempData["Topics"] = tdb.Topics;
-                        return View(post);                       
+                        return View(post);
                     }
                 }
 
@@ -105,7 +105,7 @@ namespace WebForum.Controllers
                         Session["TopicId"] = TopicId;
                         post.TopicId = TopicId.Value;
                     }
-                        
+
                     else
                         post.TopicId = Guid.Parse(selectedTopicId);
 
@@ -141,11 +141,11 @@ namespace WebForum.Controllers
                         .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
                     Guid userId = Guid.Parse(user.Id);
 
-                        ViewBag.Message = "Here are all the posts for user: "
-                            + user.Email;
-                        var post = db.Posts.Where(p => p.UserId == userId);
+                    ViewBag.Message = "Here are all the posts for user: "
+                        + user.Email;
+                    var post = db.Posts.Where(p => p.UserId == userId);
 
-                        return View(post);
+                    return View(post);
                 }
 
             }
@@ -154,7 +154,7 @@ namespace WebForum.Controllers
                 ViewBag.Message = "Error collecting your posts because of Exception: \n " + ex;
                 return RedirectToAction("Index");
             }
-            
+
             ViewBag.Message = "You are not logged in.";
             return RedirectToAction("Index");
         }
@@ -229,6 +229,13 @@ namespace WebForum.Controllers
             {
                 return View();
             }
+        }
+
+        // Displays info without reloading page
+        public ActionResult DisplayBody(string postId)
+        {
+            var post = db.Posts.Find(Guid.Parse(postId));
+            return PartialView("_DisplayPost", post);
         }
     }
 }

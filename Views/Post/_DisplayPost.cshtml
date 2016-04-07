@@ -1,0 +1,19 @@
+﻿@model WebForum.Models.Post
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title>">Body:</h3>
+    </div>
+    <div id="post-details">
+        <p>
+            @Model.Body
+        </p>
+        @Html.ActionLink("Closer look ", "Display",
+       new { id = Model.Id },
+       // Will be changing the button to be a text box
+       // that can add comments or edit YOUR own post with AJAX.
+       new { @class = "btn btn-primary" })
+    </div>
+</div>

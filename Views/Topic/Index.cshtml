@@ -29,7 +29,6 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
                 @Html.ActionLink("Post Create", "Create", "Post", new { TopicId = item.Id }, null) |
                 @Html.ActionLink("Post List", "Index", "Post", new { TopicId = item.Id }, null)
-                <button type="button">Button</button>
             </td>
         </tr>
     }
@@ -42,6 +41,7 @@
 
     <div id="displayTopic">
         <script>
+
                 @Ajax.ActionLink("How about a random Topic?",
                     "Display",
                     null,
@@ -52,6 +52,7 @@
                         HttpMethod = "GET"
                     },
                     new {@class = "btn btn-primary"})
+            
         </script>
 
     </div>
@@ -61,7 +62,7 @@
         http://stackoverflow.com/questions/14049817/in-asp-net-mvc-all-possible-ways-to-call-controller-action-method-from-a-razor
                 *@
     </div>
-    <script>
+    @*<script>
         function getTopic(id) {
             $.ajax({
                 url: '@Url.Action("GetTopicJs")',
@@ -77,5 +78,5 @@
 
         var obj = getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f');
         alert(getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f'));
-    </script>
+    </script>*@
 }

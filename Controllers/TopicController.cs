@@ -149,6 +149,7 @@ namespace WebForum.Controllers
             }
         }
 
+        // Displays info without reloading page
         public ActionResult Display()
         {
             var topic = GetTopic();
@@ -162,7 +163,8 @@ namespace WebForum.Controllers
                 .First();
             return topic;
         }
-
+        
+        // for the just JS function
         [HttpGet]
         public ActionResult GetTopicJs(string id)
         {

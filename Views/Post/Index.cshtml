@@ -1,4 +1,5 @@
-﻿@using System.Runtime.InteropServices.ComTypes
+﻿@using System.Diagnostics.PerformanceData
+@using System.Runtime.InteropServices.ComTypes
 @model IEnumerable<WebForum.Models.Post>
 
 @{
@@ -14,7 +15,7 @@
         <p>
             Time to say some stuff!
         </p>
-        @Html.ActionLink("Create New", "Create", null, new {@class = "actionlinkbutton"})
+        @Html.ActionLink("Create New", "Create", null, new { @class = "actionlinkbutton" })
     </div>
 </div>
 
@@ -24,16 +25,13 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>
     </tr>
     @if (Model != null)
     {
-        
+
         foreach (var item in Model)
         {
             <tr>
@@ -41,15 +39,63 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
-                    
+                <td id="@item.Id">
+                    @DisplayPost(item.Id.ToString())
                 </td>
             </tr>
         }
     }
 </table>
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        // Shows the entire body of the post
+        @helper DisplayPost(string id)
+            {
+                var sId = id;
+
+                @Ajax.ActionLink("Peak",
+                    "DisplayBody",
+                    null,
+                    new {postId = sId},
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = sId,
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET",
+                        OnSuccess = "hide"
+                    },
+
+                    new {@class = "btn btn-primary"})
+
+            }
+
+        // a function to hide elements
+        function hide(sId) {
+            $(sId).hide();
+        }
+    </script>
+    @*http://stackoverflow.com/questions/14049817/in-asp-net-mvc-all-possible-ways-to-call-controller-action-method-from-a-razor*@
+
+
+    @*<script>
+            function getTopic(id) {
+                $.ajax({
+                    url: '@Url.Action("GetTopicJs")',
+                    type: 'GET',
+                    dataType: 'text',
+                    cache: false,
+                    data: { id: id },
+                    success: function(name) {
+                        $('#Name').val(name);
+                    }
+                });
+            }
+
+            var obj = getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f');
+            alert(getTopic('d40c6012-335c-491f-bb07-3c3fe743a22f'));
+        </script>*@
+}
