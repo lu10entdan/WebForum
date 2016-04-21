@@ -67,7 +67,3 @@ c:\users\dane\documents\visual studio 2015\Projects\WebForum\WebForum\bin\Micros
 c:\users\dane\documents\visual studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.dll
 c:\users\dane\documents\visual studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.pdb
 C:\Users\Dane\Documents\Visual Studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.csprojResolveAssemblyReference.cache
-C:\Users\Dane\Documents\Visual Studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.Migrations.ApplicationDbContext.InitialCreate.resources
-C:\Users\Dane\Documents\Visual Studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.csproj.GenerateResource.Cache
-C:\Users\Dane\Documents\Visual Studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.Migrations.TopicContext.InitialCreate.resources
-C:\Users\Dane\Documents\Visual Studio 2015\Projects\WebForum\WebForum\obj\Debug\WebForum.Migrations.PostContext.InitialDatabaseCreation.resources

@@ -174,27 +174,16 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="DAL\ForumContext.cs" />
+    <Compile Include="DAL\ForumInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\201602180232352_InitialCreate.cs" />
-    <Compile Include="Migrations\ApplicationDbContext\201602180232352_InitialCreate.Designer.cs">
-      <DependentUpon>201602180232352_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\PostContext\201603090121588_InitialDatabaseCreation.cs" />
-    <Compile Include="Migrations\PostContext\201603090121588_InitialDatabaseCreation.Designer.cs">
-      <DependentUpon>201603090121588_InitialDatabaseCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\PostContext\Configuration.cs" />
-    <Compile Include="Migrations\TopicContext\201602180232377_InitialCreate.cs" />
-    <Compile Include="Migrations\TopicContext\201602180232377_InitialCreate.Designer.cs">
-      <DependentUpon>201602180232377_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\TopicContext\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,17 +271,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\ApplicationDbContext\201602180232352_InitialCreate.resx">
-      <DependentUpon>201602180232352_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\PostContext\201603090121588_InitialDatabaseCreation.resx">
-      <DependentUpon>201603090121588_InitialDatabaseCreation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\TopicContext\201602180232377_InitialCreate.resx">
-      <DependentUpon>201602180232377_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

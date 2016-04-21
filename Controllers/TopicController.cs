@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
@@ -8,16 +9,16 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using WebForum.Context;
+using WebForum.DAL;
 using WebForum.Models;
 
 namespace WebForum.Controllers
 {
     public class TopicController : Controller
     {
-        
 
-        private TopicContext db = new TopicContext();
+        readonly ForumContext db = new ForumContext();
+        //private TopicContext db = new TopicContext();
         // GET: Topic
         [AllowAnonymous]
         public ActionResult Index()
@@ -29,7 +30,7 @@ namespace WebForum.Controllers
             catch (Exception)
             {
 
-                return View(db.Topics.ToList());
+                return View();
             }   
         }
 
@@ -67,11 +68,21 @@ namespace WebForum.Controllers
                     return RedirectToAction("Index");
                 }  
                 return View(topic);
-            }      
-            catch  
-            {      
-                return View();
-            }      
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }          
                    
         // GET: Topic/Edit/5

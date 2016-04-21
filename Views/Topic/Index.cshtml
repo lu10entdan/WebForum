@@ -16,21 +16,23 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @if (Model != null)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Post Create", "Create", "Post", new { TopicId = item.Id }, null) |
-                @Html.ActionLink("Post List", "Index", "Post", new { TopicId = item.Id }, null)
-            </td>
-        </tr>
+        foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Name)
+                 </td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                     @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                     @Html.ActionLink("Delete", "Delete", new {id = item.Id}) |
+                     @Html.ActionLink("Post Create", "Create", "Post", new {TopicId = item.Id}, null) |
+                     @Html.ActionLink("Post List", "Index", "Post", new {TopicId = item.Id}, null)
+                 </td>
+             </tr>
+         }
     }
     @*
         Working on some JQuery to get data to move back and forth from pages easier.

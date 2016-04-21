@@ -31,8 +31,7 @@ namespace WebForum.Models
         [BindNever]
         [ScaffoldColumn(false)]
         public bool Deleted { get; set; }
-
-        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
 
         public Topic()
         {

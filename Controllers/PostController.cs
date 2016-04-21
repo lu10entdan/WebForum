@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using WebForum.Context;
+using WebForum.DAL;
 using WebForum.Models;
 
 namespace WebForum.Controllers
@@ -16,8 +16,9 @@ namespace WebForum.Controllers
     [Authorize]
     public class PostController : Controller
     {
-        readonly TopicContext tdb = new TopicContext();
-        readonly PostContext db = new PostContext();
+        readonly ForumContext db = new ForumContext();
+        //readonly TopicContext tdb = new TopicContext();
+        //readonly PostContext db = new PostContext();
 
         // GET: Post
         [HttpGet]
@@ -37,9 +38,9 @@ namespace WebForum.Controllers
                     {
                         Session["TopicId"] = TopicId;
                         ViewBag.Message = "Here are all the posts for topic: "
-                            + tdb.Topics.Find(TopicId).Name;
+                            + db.Topics.Find(TopicId).Name;
                         var post = db.Posts.Where(p => p.TopicId == TopicId);
-                        TempData["Topics"] = tdb.Topics;
+                        TempData["Topics"] = db.Topics;
                         return View(post);
                     }
                 }
@@ -51,7 +52,7 @@ namespace WebForum.Controllers
                 return View(db.Posts.ToList());
             }
             ViewBag.Message = "Here are all the posts";
-            return View(db.Posts.ToList());
+            return View();
         }
 
         // GET: Post/Details/5
@@ -68,7 +69,7 @@ namespace WebForum.Controllers
         public ActionResult Create(Guid? TopicId)
         {
             ViewBag.HasTopicId = false;
-            ViewBag.TopicList = tdb.Topics.AsEnumerable();
+            ViewBag.TopicList = db.Topics.AsEnumerable();
             if (Session["TopicId"] != null)
                 TopicId = (Guid)Session["TopicId"];
             if (TopicId != null)
@@ -98,7 +99,7 @@ namespace WebForum.Controllers
                         ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
                             .GetUserManager<ApplicationUserManager>()
                             .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                        post.UserId = Guid.Parse(user.Id);
+                        post.UserEmail = user.Email;
                     }
                     if (TopicId != null)
                     {
@@ -139,11 +140,11 @@ namespace WebForum.Controllers
                     ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
                         .GetUserManager<ApplicationUserManager>()
                         .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                    Guid userId = Guid.Parse(user.Id);
+                    string userEmail = user.Email;
 
                     ViewBag.Message = "Here are all the posts for user: "
                         + user.Email;
-                    var post = db.Posts.Where(p => p.UserId == userId);
+                    var post = db.Posts.Where(p => p.UserEmail == userEmail);
 
                     return View(post);
                 }
@@ -232,6 +233,7 @@ namespace WebForum.Controllers
         }
 
         // Displays info without reloading page
+        [AllowAnonymous]
         public ActionResult DisplayBody(string postId)
         {
             var post = db.Posts.Find(Guid.Parse(postId));

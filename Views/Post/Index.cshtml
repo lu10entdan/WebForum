@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -38,6 +38,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                <br/>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
@@ -45,6 +46,7 @@
                     @DisplayPost(item.Id.ToString())
                 </td>
             </tr>
+            <hr/>
         }
     }
 </table>
@@ -55,15 +57,15 @@
         // Shows the entire body of the post
         @helper DisplayPost(string id)
             {
-                var sId = id;
+                var pId = id;
 
                 @Ajax.ActionLink("Peak",
                     "DisplayBody",
-                    null,
-                    new {postId = sId},
+                    "Post",
+                    new {postId = pId},
                     new AjaxOptions
                     {
-                        UpdateTargetId = sId,
+                        UpdateTargetId = pId,
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "GET",
                         OnSuccess = "hide"
@@ -74,8 +76,8 @@
             }
 
         // a function to hide elements
-        function hide(sId) {
-            $(sId).hide();
+        function hide(pId) {
+            $(pId).hide();
         }
     </script>
     @*http://stackoverflow.com/questions/14049817/in-asp-net-mvc-all-possible-ways-to-call-controller-action-method-from-a-razor*@

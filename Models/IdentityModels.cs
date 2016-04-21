@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -29,5 +30,7 @@ namespace WebForum.Models
         {
             return new ApplicationDbContext();
         }
+
+        
     }
 }

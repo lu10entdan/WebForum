@@ -17,9 +17,6 @@ namespace WebForum.Models
         [Key]
         public Guid Id { get; set; }
 
-        [DisplayName("Title")]
-        public string Name { get; set; }
-
         [BindNever]
         [ScaffoldColumn(false)]
         public int Version { get; set; }
@@ -36,20 +33,29 @@ namespace WebForum.Models
         [ScaffoldColumn(false)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
-        
+
+        [DisplayName("Title")]
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
         public string Body { get; set; }
 
         [BindNever]
         [ScaffoldColumn(false)]
+        [ForeignKey("Matches")]
         public Guid TopicId { get; set; }
+
+        public virtual ICollection<Match> Matches{ get; set; }
 
         [BindNever]
         [ScaffoldColumn(false)]
-        public Guid? UserId { get; set; }
+        public string UserEmail { get; set; }
 
-        public string Description { get; set; }
 
-        public virtual ICollection<Topic> Topics { get; set; }
+        //http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+        // Create the test data in the seed
+        //public virtual ICollection<TpViewModel> Topic { get; set; }
 
         /* 
         Properties to properly navigate through the models. 
@@ -57,6 +63,7 @@ namespace WebForum.Models
         http://blog.staticvoid.co.nz/2012/7/17/entity_framework-navigation_property_basics_with_code_first
         //public virtual ICollection<Topic> TopicListCollection { get; set; }
         */
+
         public Post()
         {
             Id = Guid.NewGuid();

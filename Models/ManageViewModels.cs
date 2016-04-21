@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
 namespace WebForum.Models
 {
+ 
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
@@ -85,9 +87,9 @@ namespace WebForum.Models
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
 
-    class TopicPostViewModel
-    {
-        public IEnumerable<Topic> Topics { get; set; }
-        public IEnumerable<Post> Posts { get; set; }
-    }
+    //class TopicPostViewModel
+    //{
+    //    public IEnumerable<Topic> Topics { get; set; }
+    //    public IEnumerable<Post> Posts { get; set; }
+    //}
 }
