@@ -151,6 +151,13 @@ namespace WebForum.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
+                ****************************************
+                Chance the UserName to be just the Email and
+                allow(force) the user to input their own Username and
+                maybe add a random name generator from some website.
+                ***************************************
+                */
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

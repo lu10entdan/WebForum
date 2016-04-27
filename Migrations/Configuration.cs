@@ -1,3 +1,4 @@
+using System.Security.Policy;
 using Microsoft.AspNet.Identity;
 using WebForum.Models;
 
@@ -25,10 +26,15 @@ namespace WebForum.Migrations
             context.Users.AddOrUpdate(u => u.UserName,
                 new ApplicationUser
                 {
-                    UserName = "test@user.com",
+                    Id = "86a6458d-08d5-41f4-af23-84100b7ef22f",
+                    UserName = "TestUser",
+                    Email = "User@Test.com",
                     PasswordHash=password,
-                    PhoneNumber = "12345678"
-
+                    PhoneNumber = "12345678",
+                    AccessFailedCount = 0,
+                    EmailConfirmed = true,
+                    LockoutEnabled = false,
+                    SecurityStamp = "ccc37e0d-d0de-40d8-a9f5-c794d4ed487f"
                 });
         }
     }

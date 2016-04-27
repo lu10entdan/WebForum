@@ -19,7 +19,7 @@ namespace WebForum.DAL
 
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Match> Matches { get; set; }
+        //public DbSet<Match> Matches { get; set; }
 
         // This would make the tables singlular instead of pluralized
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

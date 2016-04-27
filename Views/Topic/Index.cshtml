@@ -22,7 +22,8 @@
          {
              <tr>
                  <td>
-                     @Html.DisplayFor(modelItem => item.Name)
+                     @*@Html.DisplayFor(modelItem => item.Name)*@
+                     @Html.ActionLink(item.Name, "Index", "Post", new { TopicId = item.Id }, null)
                  </td>
                  <td>
                      @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |

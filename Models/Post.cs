@@ -43,14 +43,14 @@ namespace WebForum.Models
 
         [BindNever]
         [ScaffoldColumn(false)]
-        [ForeignKey("Matches")]
+        //[ForeignKey("Matches")]
         public Guid TopicId { get; set; }
 
-        public virtual ICollection<Match> Matches{ get; set; }
+        //public virtual ICollection<Match> Matches{ get; set; }
 
         [BindNever]
         [ScaffoldColumn(false)]
-        public string UserEmail { get; set; }
+        public string UserId { get; set; }
 
 
         //http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application

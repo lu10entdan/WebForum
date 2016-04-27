@@ -99,7 +99,7 @@ namespace WebForum.Controllers
                         ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
                             .GetUserManager<ApplicationUserManager>()
                             .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                        post.UserEmail = user.Email;
+                        post.UserId = user.Id;
                     }
                     if (TopicId != null)
                     {
@@ -140,11 +140,11 @@ namespace WebForum.Controllers
                     ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
                         .GetUserManager<ApplicationUserManager>()
                         .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                    string userEmail = user.Email;
+                    string userId = user.Id;
 
                     ViewBag.Message = "Here are all the posts for user: "
-                        + user.Email;
-                    var post = db.Posts.Where(p => p.UserEmail == userEmail);
+                        + user.UserName;
+                    var post = db.Posts.Where(p => p.UserId == userId);
 
                     return View(post);
                 }

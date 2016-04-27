@@ -22,6 +22,7 @@ namespace WebForum
             //Database.SetInitializer<TopicContext>(new CreateDatabaseIfNotExists<TopicContext>());
             //Database.SetInitializer<PostContext>(new CreateDatabaseIfNotExists<PostContext>());
             //Database.SetInitializer<ForumContext>(new CreateDatabaseIfNotExists<ForumContext>());
+            
 
         }
 
