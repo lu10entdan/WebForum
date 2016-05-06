@@ -27,7 +27,7 @@ namespace WebForum.Migrations
                 new ApplicationUser
                 {
                     Id = "86a6458d-08d5-41f4-af23-84100b7ef22f",
-                    UserName = "TestUser",
+                    UserName = "User@Test.com",
                     Email = "User@Test.com",
                     PasswordHash=password,
                     PhoneNumber = "12345678",

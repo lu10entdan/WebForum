@@ -28,7 +28,7 @@ namespace WebForum.Controllers
 
             try
             {
-                if (Request.IsAuthenticated)
+                if (Session != null)
                 {
                     // Kept losing the TopicId when browsing through Post Pages
                     if (Session["TopicId"] != null)
@@ -51,8 +51,8 @@ namespace WebForum.Controllers
                 ViewBag.Message = "Error collecting the topic's posts";
                 return View(db.Posts.ToList());
             }
-            ViewBag.Message = "Here are all the posts";
-            return View();
+            ViewBag.Message = "Here are the Posts";
+            return View(db.Posts.ToList());
         }
 
         // GET: Post/Details/5
