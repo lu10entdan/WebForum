@@ -9,7 +9,7 @@ using WebForum.Models;
 
 namespace WebForum.DAL
 {
-    class ForumInitializer : System.Data.Entity.DropCreateDatabaseAlways<ForumContext>
+    class ForumInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ForumContext>
     {
         protected override void Seed(ForumContext context)
         {

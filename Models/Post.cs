@@ -43,7 +43,6 @@ namespace WebForum.Models
 
         [BindNever]
         [ScaffoldColumn(false)]
-        //[ForeignKey("Matches")]
         public Guid TopicId { get; set; }
 
         //public virtual ICollection<Match> Matches{ get; set; }

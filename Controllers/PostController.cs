@@ -21,7 +21,7 @@ namespace WebForum.Controllers
         //readonly PostContext db = new PostContext();
 
         // GET: Post
-        [HttpGet]
+        //[HttpGet]
         [AllowAnonymous]
         public ActionResult Index(Guid? TopicId)
         {
