@@ -14,6 +14,7 @@ namespace WebForum.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            Session["TopicId"] = null;
             return View();
         }
 

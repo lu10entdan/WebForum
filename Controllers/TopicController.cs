@@ -23,6 +23,7 @@ namespace WebForum.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            Session["TopicId"] = null;
             try
             {
                 return View(db.Topics.ToList());

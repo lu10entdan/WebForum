@@ -153,7 +153,7 @@ namespace WebForum.Controllers
             {
                 /*
                 ****************************************
-                Chance the UserName to be just the Email and
+                Change the UserName to be just the Email and
                 allow(force) the user to input their own Username and
                 maybe add a random name generator from some website.
                 ***************************************

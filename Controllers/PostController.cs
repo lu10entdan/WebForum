@@ -31,6 +31,7 @@ namespace WebForum.Controllers
                 if (Session != null)
                 {
                     // Kept losing the TopicId when browsing through Post Pages
+                    // Session is a bad idea. Might use routing.
                     if (Session["TopicId"] != null)
                         TopicId = (Guid)Session["TopicId"];
 
